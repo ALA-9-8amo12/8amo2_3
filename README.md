@@ -1,2 +1,2 @@
 # AmazighAndroid
-Projectgroep: E. Can, M. Verboon en N. Elstgeest
+Projectgroep: E. Can, M. Verboon, G. Bakker en N. Elstgeest
