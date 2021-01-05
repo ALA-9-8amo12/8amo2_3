@@ -3,11 +3,13 @@ package com.example.amazighdroid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
@@ -24,11 +26,15 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class oefencategorie extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     private static final String TAG = "OefenenActivity";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private StorageReference mStorageRef;
     List<String> values = new ArrayList<String>();
+    String selectedValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +74,7 @@ public class oefencategorie extends AppCompatActivity implements AdapterView.OnI
         // parent.getItemAtPosition(pos)
         Log.d(TAG, "Item has been selected");
         Log.d(TAG, (String) parent.getItemAtPosition(pos));
+        selectedValue = (String) parent.getItemAtPosition(pos);
 
     }
 
@@ -75,5 +82,11 @@ public class oefencategorie extends AppCompatActivity implements AdapterView.OnI
         // Another interface callback
     }
 
+    public void showItem(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, oefenitem.class);
+        intent.putExtra(EXTRA_MESSAGE, selectedValue);
+        startActivity(intent);
+    }
 
 }
