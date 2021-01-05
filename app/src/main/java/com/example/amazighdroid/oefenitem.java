@@ -15,10 +15,10 @@ public class oefenitem extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(oefencategorie.EXTRA_MESSAGE);
+        String selectedValue = intent.getStringExtra(oefencategorie.EXTRA_MESSAGE);
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView3);
-        textView.setText(message);
+        textView.setText(selectedValue);
     }
 }
