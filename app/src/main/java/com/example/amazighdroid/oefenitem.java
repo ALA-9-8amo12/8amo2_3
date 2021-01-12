@@ -48,12 +48,7 @@ public class oefenitem extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Map<String, Object> map = document.getData();
-                        for (Map.Entry<String, Object> entry : map.entrySet()) {
-                            if (entry.getKey().equals("dungeon_group")) {
-                                Log.d("TAG", entry.getValue().toString());
-                            }
-                        }
-                        Log.d(TAG, "DocumentSnapshot data: " + map.get(map.keySet().toArray()[0]));
+                        Log.d(TAG, "DocumentSnapshot data: " + map.get(map.keySet().toArray()[0]) + map.get(map.keySet().toArray()[1]));
                     } else {
                         Log.d(TAG, "No such document");
                     }
