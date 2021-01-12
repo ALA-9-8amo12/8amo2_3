@@ -10,20 +10,28 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.List;
+import java.util.Map;
 
 public class oefenitem extends AppCompatActivity {
     private static final String TAG = "OefenItem";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private StorageReference mStorageRef;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oefenitem);
+
+        Log.d(TAG, "Error getting documenfdsfdfdjksfjdfkljdsklfjsdklfjmsdts: ");
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
@@ -32,22 +40,27 @@ public class oefenitem extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView3);
         textView.setText(selectedValue);
-
-        db.collection("Dieren_01")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+        DocumentReference docRef = db.collection("appData").document("Dieren_01");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Map<String, Object> map = document.getData();
+                        for (Map.Entry<String, Object> entry : map.entrySet()) {
+                            if (entry.getKey().equals("dungeon_group")) {
+                                Log.d("TAG", entry.getValue().toString());
                             }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
+                        Log.d(TAG, "DocumentSnapshot data: " + map.get(map.keySet().toArray()[0]));
+                    } else {
+                        Log.d(TAG, "No such document");
                     }
-                });
-
-
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 }

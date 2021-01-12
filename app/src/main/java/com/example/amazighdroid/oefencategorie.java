@@ -35,6 +35,7 @@ public class oefencategorie extends AppCompatActivity implements AdapterView.OnI
     private StorageReference mStorageRef;
     List<String> values = new ArrayList<String>();
     String selectedValue;
+    private String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,6 @@ public class oefencategorie extends AppCompatActivity implements AdapterView.OnI
         Log.d(TAG, "Item has been selected");
         Log.d(TAG, (String) parent.getItemAtPosition(pos));
         selectedValue = (String) parent.getItemAtPosition(pos);
-
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
