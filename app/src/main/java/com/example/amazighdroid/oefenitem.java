@@ -31,7 +31,6 @@ public class oefenitem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oefenitem);
 
-        Log.d(TAG, "Error getting documenfdsfdfdjksfjdfkljdsklfjsdklfjmsdts: ");
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
@@ -40,7 +39,7 @@ public class oefenitem extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView3);
         textView.setText(selectedValue);
-        DocumentReference docRef = db.collection("appData").document("Dieren_01");
+        DocumentReference docRef = db.collection("appData").document(selectedValue);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
