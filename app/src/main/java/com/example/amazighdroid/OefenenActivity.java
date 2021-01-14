@@ -15,6 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OefenenActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     // Required for database
@@ -45,9 +48,34 @@ public class OefenenActivity extends AppCompatActivity implements AdapterView.On
 
 // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("woorden/yes");
+        DatabaseReference myRef = database.getReference("woorden/dieren0");
 
-        myRef.setValue("Hello, World!");
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+//                String value = dataSnapshot.getValue(String.class);
+                List<String> list = new ArrayList<>();
+                List<String> list2 = new ArrayList<>();
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String title = ds.child("nl").getValue(String.class);
+                    String title2 = ds.child("am").getValue(String.class);
+                    list.add(title);
+                    list2.add(title2);
+                    Log.d("TAG", "NL woorden: " + title);
+                    Log.d("TAG", "AM woorden: " + title2);
+                }
+//                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
