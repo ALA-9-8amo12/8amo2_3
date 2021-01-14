@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AmazighDroid">
         <activity android:name=".oefenitem"></activity>
-        <activity android:name=".oefencategorie" />
+        <activity android:name=".OefenenView" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
