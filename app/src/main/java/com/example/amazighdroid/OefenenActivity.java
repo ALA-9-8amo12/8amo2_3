@@ -9,34 +9,45 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.database.ValueEventListener;
 
 public class OefenenActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    // Required for database
+//    private DatabaseReference mDatabase;
+
+    // Setting name for TAG Debug
     private static final String TAG = "OefenenActivity";
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    List<String> values = new ArrayList<String>();
-    String selectedValue;
-    private String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oefenen);
 
-        // Selection of the spinner
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
-        // Application of the Array to the Spinner
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, values);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-        spinner.setAdapter(spinnerArrayAdapter);
-        spinner.setOnItemSelectedListener(this);
 
+
+//        // Selection of the spinner
+//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+//
+//        // Application of the Array to the Spinner
+//        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, values);
+//        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+//        spinner.setAdapter(spinnerArrayAdapter);
+//        spinner.setOnItemSelectedListener(this);
+
+        // Read from the database
+
+
+// Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("woorden/yes");
+
+        myRef.setValue("Hello, World!");
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -45,7 +56,7 @@ public class OefenenActivity extends AppCompatActivity implements AdapterView.On
         // parent.getItemAtPosition(pos)
         Log.d(TAG, "Item has been selected: " + (String) parent.getItemAtPosition(pos));
 //        Log.d(TAG, (String) parent.getItemAtPosition(pos));
-        selectedValue = (String) parent.getItemAtPosition(pos);
+//        selectedValue = (String) parent.getItemAtPosition(pos);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
