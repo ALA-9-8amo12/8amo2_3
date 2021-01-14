@@ -3,8 +3,6 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-def buildCode = (int)(((new Date().getTime()/1000) - 1451606400) / 10)
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -14,8 +12,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
-//        versionName "1.0"
-        versionName "0.1.${buildCode}"
+        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
