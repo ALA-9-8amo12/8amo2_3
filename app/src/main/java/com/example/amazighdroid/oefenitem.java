@@ -20,6 +20,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.List;
 import java.util.Map;
 
+
 public class oefenitem extends AppCompatActivity {
     private static final String TAG = "OefenItem";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -48,6 +49,9 @@ public class oefenitem extends AppCompatActivity {
                     if (document.exists()) {
                         Map<String, Object> map = document.getData();
                         Log.d(TAG, "DocumentSnapshot data: " + map.get(map.keySet().toArray()[0]) + map.get(map.keySet().toArray()[1]));
+//                        for (Object key : map.values()) {
+//                            Log.d(TAG, "Test" + key);
+//                        }
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -56,5 +60,6 @@ public class oefenitem extends AppCompatActivity {
                 }
             }
         });
+
     }
 }

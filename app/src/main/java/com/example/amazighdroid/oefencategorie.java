@@ -73,8 +73,8 @@ public class oefencategorie extends AppCompatActivity implements AdapterView.OnI
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
-        Log.d(TAG, "Item has been selected");
-        Log.d(TAG, (String) parent.getItemAtPosition(pos));
+        Log.d(TAG, "Item has been selected: " + (String) parent.getItemAtPosition(pos));
+//        Log.d(TAG, (String) parent.getItemAtPosition(pos));
         selectedValue = (String) parent.getItemAtPosition(pos);
     }
 
