@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OefenenView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class OefenenActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     private static final String TAG = "OefenenActivity";
