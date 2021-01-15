@@ -38,7 +38,7 @@ public class OefenenActivity extends AppCompatActivity implements AdapterView.On
         // Selection of the spinner
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
-        // Application of the Array to the Spinner
+        // Fill spinner with data from array
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categorieArray);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
         spinner.setAdapter(spinnerArrayAdapter);
