@@ -31,18 +31,14 @@ public class OefenenItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oefenen_item);
 
-        // Declare array to hold values of database
-        List<String> listTest = new ArrayList<>();
-
         // Get string from previous activity
         Intent intent = getIntent();
         String selectedCategorie = intent.getExtras().getString("selectedCategorie");
 
-        // Feed oefenen_viewpager.xml with data
+        // Feed oefenen_viewpager.xml with data with adapter in ValueEventListener
         viewPager2 = findViewById(R.id.viewPager2);
 
         // Array populated with data from firebase
-        // TODO: Data is null due to async call
         List<String> listNl = new ArrayList<>();
         List<String> listAm = new ArrayList<>();
         List<String> listImg = new ArrayList<>();
@@ -54,13 +50,9 @@ public class OefenenItemActivity extends AppCompatActivity {
         list.add("Third Screen");
         list.add("Fourth Screen");
 
-
-
-
         // Declare instance of database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("woorden/" + selectedCategorie);
-
 
         // Retrieve values of selected categorie from database and add them into a list
         myRef.addValueEventListener(new ValueEventListener() {
@@ -77,11 +69,6 @@ public class OefenenItemActivity extends AppCompatActivity {
                     listNl.add(nl);
                     listAm.add(am);
                     listImg.add(img);
-
-//                    for(String log : listAm)
-//                    {
-//                        Log.v("Tag",log);
-//                    }
                 }
             }
 
