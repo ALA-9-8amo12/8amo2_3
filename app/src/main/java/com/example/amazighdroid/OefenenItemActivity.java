@@ -54,7 +54,7 @@ public class OefenenItemActivity extends AppCompatActivity {
         list.add("Third Screen");
         list.add("Fourth Screen");
 
-        viewPager2.setAdapter(new ViewPagerAdapter(this, list, viewPager2));
+
 
 
         // Declare instance of database
@@ -66,6 +66,8 @@ public class OefenenItemActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                // Dynamically create pages based on array size
+                viewPager2.setAdapter(new ViewPagerAdapter(getApplicationContext(), listNl, viewPager2));
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -75,6 +77,7 @@ public class OefenenItemActivity extends AppCompatActivity {
                     listNl.add(nl);
                     listAm.add(am);
                     listImg.add(img);
+
 //                    for(String log : listAm)
 //                    {
 //                        Log.v("Tag",log);
