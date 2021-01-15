@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class OefenenActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    // Setting name for TAG Debug
+    // Setting name for TAG
     private static final String TAG = "OefenenActivity";
 
     // Define array for spinner

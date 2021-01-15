@@ -1,6 +1,7 @@
 package com.example.amazighdroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +21,9 @@ import java.util.List;
 
 public class OefenenItemActivity extends AppCompatActivity {
 
-    // Setting name for TAG Debug
+    ViewPager2 viewPager2;
+
+    // Setting name for TAG
     private static final String TAG = "OefenenItemActivity";
 
     @Override
@@ -29,21 +32,35 @@ public class OefenenItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_oefenen_item);
 
         // Declare array to hold values of database
-        List<String> listNl = new ArrayList<>();
-        List<String> listAm = new ArrayList<>();
-        List<String> listImg = new ArrayList<>();
+        List<String> listTest = new ArrayList<>();
 
         // Get string from previous activity
         Intent intent = getIntent();
         String selectedCategorie = intent.getExtras().getString("selectedCategorie");
 
-        // Set textview to string selectedCategorie
-        TextView txtview = (TextView) findViewById(R.id.textView3);
-        txtview.setText(selectedCategorie);
+        // Feed oefenen_viewpager.xml with data
+        viewPager2 = findViewById(R.id.viewPager2);
+
+        // Array populated with data from firebase
+        // TODO: Data is null due to async call
+        List<String> listNl = new ArrayList<>();
+        List<String> listAm = new ArrayList<>();
+        List<String> listImg = new ArrayList<>();
+
+        // Array for testing purposes
+        List<String> list = new ArrayList<>();
+        list.add("First Screen");
+        list.add("Second Screen");
+        list.add("Third Screen");
+        list.add("Fourth Screen");
+
+        viewPager2.setAdapter(new ViewPagerAdapter(this, list, viewPager2));
+
 
         // Declare instance of database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("woorden/" + selectedCategorie);
+
 
         // Retrieve values of selected categorie from database and add them into a list
         myRef.addValueEventListener(new ValueEventListener() {
@@ -58,6 +75,10 @@ public class OefenenItemActivity extends AppCompatActivity {
                     listNl.add(nl);
                     listAm.add(am);
                     listImg.add(img);
+//                    for(String log : listAm)
+//                    {
+//                        Log.v("Tag",log);
+//                    }
                 }
             }
 
