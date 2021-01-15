@@ -70,6 +70,11 @@ public class OefenenItemActivity extends AppCompatActivity {
                     listAm.add(am);
                     listImg.add(img);
                 }
+                if(dataSnapshot != null) {
+                    for (String log : listAm) {
+                        Log.v("Tag", log);
+                    }
+                }
             }
 
             @Override
