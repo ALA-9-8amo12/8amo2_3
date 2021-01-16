@@ -48,7 +48,7 @@ public class OefenenActivity extends AppCompatActivity implements AdapterView.On
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("woorden");
 
-        // Read from the database
+        // Read from the database and update spinner
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -57,13 +57,12 @@ public class OefenenActivity extends AppCompatActivity implements AdapterView.On
                     categorieArray.add(data);
                     spinnerArrayAdapter.notifyDataSetChanged();
                 }
-//                Log.v(TAG, "First data : " + youNameArray.get(0));
-//                Log.v(TAG, "Second data : " + youNameArray.get(2));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", databaseError.toException());
             }
         });
     }
