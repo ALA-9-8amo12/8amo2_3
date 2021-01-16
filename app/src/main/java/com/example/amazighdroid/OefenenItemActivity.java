@@ -42,7 +42,6 @@ public class OefenenItemActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.viewPager2);
 
         // Array populated with data from firebase
-        // TODO: Data is null due to async call
         List<String> listNl = new ArrayList<>();
         List<String> listAm = new ArrayList<>();
         List<String> listImg = new ArrayList<>();
@@ -53,8 +52,6 @@ public class OefenenItemActivity extends AppCompatActivity {
         list.add("Second Screen");
         list.add("Third Screen");
         list.add("Fourth Screen");
-
-
 
 
         // Declare instance of database
@@ -77,11 +74,6 @@ public class OefenenItemActivity extends AppCompatActivity {
                     listNl.add(nl);
                     listAm.add(am);
                     listImg.add(img);
-
-//                    for(String log : listAm)
-//                    {
-//                        Log.v("Tag",log);
-//                    }
                 }
             }
 
