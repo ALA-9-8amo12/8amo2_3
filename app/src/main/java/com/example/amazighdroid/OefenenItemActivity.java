@@ -83,11 +83,6 @@ public class OefenenItemActivity extends AppCompatActivity {
 //                        Log.v("Tag",log);
 //                    }
                 }
-                if(dataSnapshot != null) {
-                    for (String log : listAm) {
-                        Log.v("Tag", log);
-                    }
-                }
             }
 
             @Override
