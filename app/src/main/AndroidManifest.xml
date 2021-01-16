@@ -10,8 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AmazighDroid">
         <activity android:name=".OefenenItemActivity"></activity>
-        <activity android:name=".oefenitem" />
+<!--        <activity android:name=".oefenitem" />-->
         <activity android:name=".OefenenActivity" />
+        <activity android:name=".OverOnsActivity" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
