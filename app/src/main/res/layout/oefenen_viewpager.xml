@@ -7,20 +7,29 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="32sp"
         tools:text="item" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnToggle"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Toggle Orientation" />
+
+        android:layout_below="@+id/tvTitle"
+        android:layout_alignStart="@+id/tvTitle"
+        android:layout_alignEnd="@+id/tvTitle"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="105dp"
+        android:layout_marginEnd="0dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        tools:text="item" />
 
 </RelativeLayout>

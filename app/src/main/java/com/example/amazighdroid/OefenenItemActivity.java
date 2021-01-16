@@ -17,7 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OefenenItemActivity extends AppCompatActivity {
 
@@ -53,18 +55,16 @@ public class OefenenItemActivity extends AppCompatActivity {
         list.add("Third Screen");
         list.add("Fourth Screen");
 
-
         // Declare instance of database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("woorden/" + selectedCategorie);
-
 
         // Retrieve values of selected categorie from database and add them into a list
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Dynamically create pages based on array size
-                viewPager2.setAdapter(new ViewPagerAdapter(getApplicationContext(), listNl, viewPager2));
+                viewPager2.setAdapter(new ViewPagerAdapter(getApplicationContext(), listNl, listAm, viewPager2));
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -74,6 +74,7 @@ public class OefenenItemActivity extends AppCompatActivity {
                     listNl.add(nl);
                     listAm.add(am);
                     listImg.add(img);
+
                 }
             }
 
