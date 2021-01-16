@@ -59,7 +59,7 @@ public class OefenenItemActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Dynamically create pages based on array size
-                viewPager2.setAdapter(new ViewPagerAdapter(getApplicationContext(), listNL, listAM, viewPager2));
+                viewPager2.setAdapter(new OefenenViewPagerAdapter(getApplicationContext(), listNL, listAM, listIMG, viewPager2));
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -69,7 +69,6 @@ public class OefenenItemActivity extends AppCompatActivity {
                     listNL.add(nl);
                     listAM.add(am);
                     listIMG.add(img);
-
                 }
             }
 

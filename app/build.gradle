@@ -40,4 +40,8 @@ dependencies {
 
     // Required by Viewpager2
     implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha01'
+
+    // Required by Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }

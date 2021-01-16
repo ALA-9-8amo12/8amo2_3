@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -13,19 +14,23 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.ViewHolder> {
+import com.bumptech.glide.Glide;
+
+public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPagerAdapter.ViewHolder> {
 
     private List<String> mDataAM;
     private List<String> mDataNL;
+    private List<String> mDataIMG;
     private LayoutInflater mInflater;
     private ViewPager2 viewPager2;
 
     private int[] colorArray = new int[]{android.R.color.black, android.R.color.holo_blue_dark, android.R.color.holo_green_dark, android.R.color.holo_red_dark};
 
-    ViewPagerAdapter(Context context, List<String> listNL, List<String> listAM, ViewPager2 viewPager2) {
+    OefenenViewPagerAdapter(Context context, List<String> listNL, List<String> listAM, List<String> listIMG, ViewPager2 viewPager2) {
         this.mInflater = LayoutInflater.from(context);
         this.mDataAM = listAM;
         this.mDataNL = listNL;
+        this.mDataIMG = listIMG;
         this.viewPager2 = viewPager2;
     }
 
@@ -39,9 +44,13 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         String am = mDataAM.get(position);
         String nl = mDataNL.get(position);
+        String img = mDataIMG.get(position);
         holder.tvAM.setText(am);
         holder.tvNL.setText(nl);
         holder.relativeLayout.setBackgroundResource(colorArray[position]);
+        Glide.with(holder.imageView.getContext())
+                .load(img)
+                .into(holder.imageView);
     }
 
     @Override
@@ -55,6 +64,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
         TextView tvNL;
         RelativeLayout relativeLayout;
         Button button;
+        ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +72,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
             tvNL = itemView.findViewById(R.id.tvNL);
             relativeLayout = itemView.findViewById(R.id.container);
             button = itemView.findViewById(R.id.btnToggle);
+            imageView = itemView.findViewById(R.id.imageView2);
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
