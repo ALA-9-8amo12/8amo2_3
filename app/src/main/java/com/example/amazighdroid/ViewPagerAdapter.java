@@ -15,21 +15,19 @@ import androidx.viewpager2.widget.ViewPager2;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.ViewHolder> {
 
-    private List<String> mData;
-    private List<String> mData2;
+    private List<String> mDataAM;
+    private List<String> mDataNL;
     private LayoutInflater mInflater;
     private ViewPager2 viewPager2;
 
-
     private int[] colorArray = new int[]{android.R.color.black, android.R.color.holo_blue_dark, android.R.color.holo_green_dark, android.R.color.holo_red_dark};
 
-    ViewPagerAdapter(Context context, List<String> listNl, List<String> data, ViewPager2 viewPager2) {
+    ViewPagerAdapter(Context context, List<String> listNL, List<String> listAM, ViewPager2 viewPager2) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
-        this.mData2 = listNl;
+        this.mDataAM = listAM;
+        this.mDataNL = listNL;
         this.viewPager2 = viewPager2;
     }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,46 +37,42 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        String animal2 = mData2.get(position);
-        holder.myTextView.setText(animal);
-        holder.myTextView2.setText(animal2);
+        String am = mDataAM.get(position);
+        String nl = mDataNL.get(position);
+        holder.tvAM.setText(am);
+        holder.tvNL.setText(nl);
         holder.relativeLayout.setBackgroundResource(colorArray[position]);
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mDataAM.size();
     }
-
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView myTextView;
-        TextView myTextView2;
+        TextView tvAM;
+        TextView tvNL;
         RelativeLayout relativeLayout;
-//        Button button;
+        Button button;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.tvTitle);
-            myTextView2 = itemView.findViewById(R.id.tvTitle2);
+            tvAM = itemView.findViewById(R.id.tvAM);
+            tvNL = itemView.findViewById(R.id.tvNL);
             relativeLayout = itemView.findViewById(R.id.container);
-//            button = itemView.findViewById(R.id.btnToggle);
+            button = itemView.findViewById(R.id.btnToggle);
 
-//            button.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//
-//                    if(viewPager2.getOrientation() == ViewPager2.ORIENTATION_VERTICAL)
-//                        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-//                    else{
-//                        viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
-//                    }
-//                }
-//            });
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(viewPager2.getOrientation() == ViewPager2.ORIENTATION_VERTICAL)
+                        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+                    else{
+                        viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+                    }
+                }
+            });
         }
     }
-
 }
