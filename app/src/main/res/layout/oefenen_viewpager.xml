@@ -35,12 +35,12 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnToggle"
-        android:layout_width="104dp"
-        android:layout_height="101dp"
+        android:layout_width="198dp"
+        android:layout_height="99dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/_general_music_note_icon_24dp" />
+        android:background="@drawable/play_button" />
 
     <ImageView
         android:id="@+id/imageView2"
