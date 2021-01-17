@@ -27,7 +27,7 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
     private LayoutInflater mInflater;
     private ViewPager2 viewPager2;
 
-    private int[] colorArray = new int[]{android.R.color.black, android.R.color.holo_blue_dark, android.R.color.holo_green_dark, android.R.color.holo_red_dark};
+//    private int[] colorArray = new int[]{android.R.color.black, android.R.color.holo_blue_dark, android.R.color.holo_green_dark, android.R.color.holo_red_dark};
 
     OefenenViewPagerAdapter(Context context, List<String> listNL, List<String> listAM, List<String> listIMG, List<String> listMP3, ViewPager2 viewPager2) {
         this.mInflater = LayoutInflater.from(context);
@@ -52,7 +52,7 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
         String mp3 = mDataMP3.get(position);
         holder.tvAM.setText(am);
         holder.tvNL.setText(nl);
-        holder.relativeLayout.setBackgroundResource(colorArray[position]);
+//        holder.relativeLayout.setBackgroundResource(colorArray[position]);
         Glide.with(holder.imageView.getContext())
                 .load(img)
                 .into(holder.imageView);

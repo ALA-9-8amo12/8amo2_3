@@ -36,7 +36,7 @@ public class OefenenActivity extends AppCompatActivity implements AdapterView.On
         setContentView(R.layout.activity_oefenen);
 
         // Selection of the spinner
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerOefenen);
 
         // Fill spinner with data from array
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categorieArray);

@@ -36,7 +36,7 @@ public class OefenenItemActivity extends AppCompatActivity {
         String selectedCategorie = intent.getExtras().getString("selectedCategorie");
 
         // Feed oefenen_viewpager.xml with data
-        viewPager2 = findViewById(R.id.viewPager2);
+        viewPager2 = findViewById(R.id.viewPagerOefenen);
 
         // Array populated with data from firebase
         List<String> listNL = new ArrayList<>();
