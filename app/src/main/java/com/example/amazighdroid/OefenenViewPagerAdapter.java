@@ -55,6 +55,8 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
 //        holder.relativeLayout.setBackgroundResource(colorArray[position]);
         Glide.with(holder.imageView.getContext())
                 .load(img)
+                .placeholder(R.drawable.image_loading)
+                .error(R.drawable.image_not_available)
                 .into(holder.imageView);
 
         holder.button.setOnClickListener(new View.OnClickListener() {
