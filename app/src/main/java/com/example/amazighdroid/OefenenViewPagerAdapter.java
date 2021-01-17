@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPagerAdapter.ViewHolder> {
 
@@ -55,8 +56,10 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
 //        holder.relativeLayout.setBackgroundResource(colorArray[position]);
         Glide.with(holder.imageView.getContext())
                 .load(img)
-                .placeholder(R.drawable.image_loading)
+//                .placeholder(R.drawable.image_loading)
                 .error(R.drawable.image_not_available)
+                .thumbnail(0.05f)
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.imageView);
 
         holder.button.setOnClickListener(new View.OnClickListener() {
