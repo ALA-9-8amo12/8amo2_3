@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -53,6 +54,8 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
         String mp3 = mDataMP3.get(position);
         holder.tvAM.setText(am);
         holder.tvNL.setText(nl);
+        Toast toast = Toast.makeText(holder.imageView.getContext(), "Audio failed to play", Toast.LENGTH_SHORT);
+
 //        holder.relativeLayout.setBackgroundResource(colorArray[position]);
         Glide.with(holder.imageView.getContext())
                 .load(img)
@@ -70,16 +73,21 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
                     mp.setDataSource(mp3);
                 } catch (IOException e) {
                     e.printStackTrace();
+                    toast.show();
                 }
                 try {
                     mp.prepare();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    toast.show();
                 }
                 mp.start();
             }
         });
+
     }
+
+
 
     @Override
     public int getItemCount() {
