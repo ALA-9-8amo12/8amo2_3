@@ -42,6 +42,7 @@ public class OefenenItemActivity extends AppCompatActivity {
         List<String> listNL = new ArrayList<>();
         List<String> listAM = new ArrayList<>();
         List<String> listIMG = new ArrayList<>();
+        List<String> listMP3 = new ArrayList<>();
 
         // Array for testing purposes
         List<String> list = new ArrayList<>();
@@ -59,16 +60,18 @@ public class OefenenItemActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Dynamically create pages based on array size
-                viewPager2.setAdapter(new OefenenViewPagerAdapter(getApplicationContext(), listNL, listAM, listIMG, viewPager2));
+                viewPager2.setAdapter(new OefenenViewPagerAdapter(getApplicationContext(), listNL, listAM, listIMG, listMP3, viewPager2));
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     String nl = ds.child("nl").getValue(String.class);
                     String am = ds.child("am").getValue(String.class);
                     String img = ds.child("img").getValue(String.class);
+                    String mp3 = ds.child("mp3").getValue(String.class);
                     listNL.add(nl);
                     listAM.add(am);
                     listIMG.add(img);
+                    listMP3.add(mp3);
                 }
             }
 

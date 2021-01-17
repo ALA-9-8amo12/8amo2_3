@@ -1,6 +1,7 @@
 package com.example.amazighdroid;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,16 +23,18 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
     private List<String> mDataAM;
     private List<String> mDataNL;
     private List<String> mDataIMG;
+    private List<String> mDataMP3;
     private LayoutInflater mInflater;
     private ViewPager2 viewPager2;
 
     private int[] colorArray = new int[]{android.R.color.black, android.R.color.holo_blue_dark, android.R.color.holo_green_dark, android.R.color.holo_red_dark};
 
-    OefenenViewPagerAdapter(Context context, List<String> listNL, List<String> listAM, List<String> listIMG, ViewPager2 viewPager2) {
+    OefenenViewPagerAdapter(Context context, List<String> listNL, List<String> listAM, List<String> listIMG, List<String> listMP3, ViewPager2 viewPager2) {
         this.mInflater = LayoutInflater.from(context);
         this.mDataAM = listAM;
         this.mDataNL = listNL;
         this.mDataIMG = listIMG;
+        this.mDataMP3 = listMP3;
         this.viewPager2 = viewPager2;
     }
 
@@ -45,12 +49,31 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
         String am = mDataAM.get(position);
         String nl = mDataNL.get(position);
         String img = mDataIMG.get(position);
+        String mp3 = mDataMP3.get(position);
         holder.tvAM.setText(am);
         holder.tvNL.setText(nl);
         holder.relativeLayout.setBackgroundResource(colorArray[position]);
         Glide.with(holder.imageView.getContext())
                 .load(img)
                 .into(holder.imageView);
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaPlayer mp = new MediaPlayer();
+                try {
+                    mp.setDataSource(mp3);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    mp.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                mp.start();
+            }
+        });
     }
 
     @Override
@@ -73,17 +96,6 @@ public class OefenenViewPagerAdapter extends RecyclerView.Adapter<OefenenViewPag
             relativeLayout = itemView.findViewById(R.id.container);
             button = itemView.findViewById(R.id.btnToggle);
             imageView = itemView.findViewById(R.id.imageView2);
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(viewPager2.getOrientation() == ViewPager2.ORIENTATION_VERTICAL)
-                        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-                    else{
-                        viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
-                    }
-                }
-            });
         }
     }
 }
